@@ -9,7 +9,7 @@
      default))
  '(display-line-numbers-type 'relative)
  '(inhibit-startup-screen t)
- '(package-selected-packages '(gruber-darker-theme multiple-cursors)))
+ '(package-selected-packages '(gruber-darker-theme multiple-cursors typescript-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
