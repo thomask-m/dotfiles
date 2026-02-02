@@ -2,6 +2,9 @@
 (setq custom-file "~/.emacs.custom.el")
 (load custom-file)
 
+; load gruvbox theme: https://github.com/greduan/emacs-theme-gruvbox
+(load-theme 'gruvbox)
+
 ; Requires downloading font from https://tom7.org/fixedersys/
 (add-to-list 'default-frame-alist `(font . "FixederSys 2x 16"))
 
