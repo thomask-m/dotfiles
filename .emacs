@@ -2,6 +2,21 @@
 (setq custom-file "~/.emacs.custom.el")
 (load custom-file)
 
+; Configuring MELPA
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(package-initialize)
+
+; tree-sitter mode
+(require 'tree-sitter)
+(require 'tree-sitter-langs)
+(global-tree-sitter-mode)
+(add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
+
+; expand-region - the alternative to "inner" in vim
+(require 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
+
 ; Requires downloading font from https://tom7.org/fixedersys/
 (add-to-list 'default-frame-alist `(font . "FixederSys 2x 16"))
 
