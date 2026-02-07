@@ -31,6 +31,9 @@
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
+; I do not like C-z being minimize window, going to remap to undo
+(global-set-key (kbd "C-z") 'undo)
+
 ; I like vim's "o" and "O" command in normal mode
 (defun like_vim_normal_mode_o_command ()
   "Add a new line just like o command in vim"
@@ -46,6 +49,16 @@
 (global-set-key (kbd "<C-return>") 'like_vim_normal_mode_o_command)
 (global-set-key (kbd "<C-S-return>") 'like_vim_normal_mode_shift_o_command)
 
+; I like vim's shift-v to mark current line as a region
+(defun mark-current-line-as-region ()
+  "Mark current line as region like shift-v in vim"
+  (interactive)
+  (beginning-of-line)
+  (set-mark (point-at-eol))
+  (forward-line 0)
+  (activate-mark))
+(global-set-key (kbd "C-c l") 'mark-current-line-as-region)
+
 ; get rid of menu bar
 (menu-bar-mode 0)
 ; get rid of tool bar
@@ -54,3 +67,5 @@
 (scroll-bar-mode 0)
 ; set line numbers
 (global-display-line-numbers-mode)
+; set column number in display line
+(column-number-mode 1)
