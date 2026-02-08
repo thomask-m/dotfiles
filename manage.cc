@@ -33,11 +33,13 @@ int main() {
                 << " from: " << config_files[dest_filename] << std::endl;
       if (!testing_mode) {
         // from, to
-	// we want update_existing because it only replaces the dotfile if
-	// it is older than the one we're copy over. (this is definitely desirable).
-	std::cout << "Actually writing out changes.." << std::endl; 
-        std::filesystem::copy_file(config_files[dest_filename],
-                                   dir_entry.path(), std::filesystem::copy_options::update_existing);
+        // we want update_existing because it only replaces the dotfile if
+        // it is older than the one we're copy over. (this is definitely
+        // desirable).
+        std::cout << "Actually writing out changes.." << std::endl;
+        std::filesystem::copy_file(
+            config_files[dest_filename], dir_entry.path(),
+            std::filesystem::copy_options::update_existing);
       }
     }
   }
