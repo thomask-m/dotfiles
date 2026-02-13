@@ -10,8 +10,8 @@
  '(display-line-numbers-type 'relative)
  '(inhibit-startup-screen t)
  '(package-selected-packages
-   '(expand-region gruber-darker-theme magit multiple-cursors tree-sitter
-		   tree-sitter-langs treesit-auto)))
+   '(expand-region gruber-darker-theme magit multiple-cursors reformatter
+		   tree-sitter tree-sitter-langs treesit-auto)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -31,6 +31,18 @@
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
+; reformatter setup - because I like sillyfmt: https://github.com/thomask-m/sillyfmt
+(setq sillyfmt-command "/Users/mas/proj/sillyfmt/target/release/sillyfmt")
+(reformatter-define sillyfmt-format
+  :program sillyfmt-command)
+(defun sf ()
+  "Call sillyfmt on buffer, disabling read-only buffer and resetting it after formatting is done"
+  (interactive)
+  ; I don't love it, but disabling read-only is the only thing that will format the compilation output
+  (read-only-mode -1)
+  (sillyfmt-format-buffer)
+  (read-only-mode 1))
+
 ; I do not like C-z being minimize window, going to remap to undo
 (global-set-key (kbd "C-z") 'undo)
 
