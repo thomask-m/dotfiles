@@ -10,8 +10,10 @@
  '(display-line-numbers-type 'relative)
  '(inhibit-startup-screen t)
  '(package-selected-packages
-   '(expand-region gruber-darker-theme magit multiple-cursors reformatter
-		   tree-sitter tree-sitter-langs treesit-auto)))
+   '(exec-path-from-shell expand-region gruber-darker-theme magit
+			  multiple-cursors reformatter tree-sitter
+			  tree-sitter-langs treesit-auto undo-tree
+			  vterm)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
