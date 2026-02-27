@@ -54,7 +54,7 @@
   (clang-fmt-format-buffer))
 
 ;; vterm tramp setup
-(setq vterm-tramp-shells '((t "/bin/bash")))
+(setq vterm-tramp-shells '((t "/bin/fish")))
 
 ;; I like vim's "o" and "O" command in normal mode
 (defun like_vim_normal_mode_o_command ()
