@@ -53,7 +53,7 @@
   (interactive)
   (clang-fmt-format-buffer))
 
-;; vterm tramp setup
+;; vterm tramp setup - i like fish with vterm
 (setq vterm-tramp-shells '((t "/bin/fish")))
 
 ;; I like vim's "o" and "O" command in normal mode
@@ -86,6 +86,11 @@
 
 ;; Commenting is too frequent
 (global-set-key (kbd "C-;") 'comment-line)
+
+;; M-x compile is much too frequent
+(global-set-key [f9] #'compile)
+;; M-x recompile as well
+(global-set-key [(control f9)] #'recompile)
 
 ;; Years of using an apple machine as my primary device has trained me to reach for cmd:
 ;; C-x 1 (delete-other-windows) is just one too many keystrokes
