@@ -14,6 +14,21 @@
 (global-tree-sitter-mode)
 (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
 
+;; eglot (LSP) for C/C++ navigation — uses clangd
+;; Auto-start for local files; use M-x eglot manually for TRAMP files
+(defun my/eglot-ensure-local ()
+  (unless (file-remote-p buffer-file-name)
+    (eglot-ensure)))
+(add-hook 'c-mode-hook #'my/eglot-ensure-local)
+(add-hook 'c++-mode-hook #'my/eglot-ensure-local)
+
+(add-hook 'eglot-managed-mode-hook (lambda () (flymake-mode -1)))
+(add-hook 'eglot-managed-mode-hook (lambda () (eldoc-mode -1)))           
+
+;; Ensure TRAMP uses the remote machine's full PATH (so it finds clangd)
+(with-eval-after-load 'tramp
+  (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
+
 ;; expand-region - the alternative to "inner" in vim
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
@@ -47,7 +62,8 @@
 ;; clang-format setup
 (setq clang-fmt-command "clang-format")
 (reformatter-define clang-fmt-format
-  :program clang-fmt-command)
+  :program clang-fmt-command
+  :args '("--style=Google"))
 (defun cf ()
   "Call clang-format on buffer"
   (interactive)
@@ -107,3 +123,24 @@
 (global-display-line-numbers-mode)
 ; set column number in display line
 (column-number-mode 1)
+
+;; ORG MODE STUFF BELOW
+;; org-mode setup
+(setq org-directory "~/org/")
+(setq org-agenda-files '("~/org/"))
+
+;; task states: left of | = open, right of | = closed
+(setq org-todo-keywords
+      '((sequence "TODO" "IN-PROGRESS" "ON-HOLD" "|" "DONE" "CANCELLED")))
+
+;; log timestamp when a task is marked DONE
+(setq org-log-done 'time)
+
+;; org-agenda keybinding
+(global-set-key (kbd "C-c a") 'org-agenda)
+
+;; org-capture keybinding and template
+(global-set-key (kbd "C-c c") 'org-capture)
+(setq org-capture-templates
+      '(("t" "Task" entry (file "~/org/projects.org")
+         "* TODO %?\n  %u")))
