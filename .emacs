@@ -14,20 +14,22 @@
 (global-tree-sitter-mode)
 (add-hook 'tree-sitter-after-on-hook #'tree-sitter-hl-mode)
 
+;; UNFORTUNATELY, I THINK I DON'T LIKE LSPs......
+;; I FIND THEM VERY RARELY USEFUL BUT STILL I'LL THIS CONFIG AROUND
 ;; eglot (LSP) for C/C++ navigation — uses clangd
 ;; Auto-start for local files; use M-x eglot manually for TRAMP files
-(defun my/eglot-ensure-local ()
-  (unless (file-remote-p buffer-file-name)
-    (eglot-ensure)))
-(add-hook 'c-mode-hook #'my/eglot-ensure-local)
-(add-hook 'c++-mode-hook #'my/eglot-ensure-local)
+;; (defun my/eglot-ensure-local ()
+;;   (unless (file-remote-p buffer-file-name)
+;;     (eglot-ensure)))
+;; (add-hook 'c-mode-hook #'my/eglot-ensure-local)
+;; (add-hook 'c++-mode-hook #'my/eglot-ensure-local)
 
-(add-hook 'eglot-managed-mode-hook (lambda () (flymake-mode -1)))
-(add-hook 'eglot-managed-mode-hook (lambda () (eldoc-mode -1)))           
+;; (add-hook 'eglot-managed-mode-hook (lambda () (flymake-mode -1)))
+;; (add-hook 'eglot-managed-mode-hook (lambda () (eldoc-mode -1)))
 
-;; Ensure TRAMP uses the remote machine's full PATH (so it finds clangd)
-(with-eval-after-load 'tramp
-  (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
+;; ;; Ensure TRAMP uses the remote machine's full PATH (so it finds clangd)
+;; (with-eval-after-load 'tramp
+;;   (add-to-list 'tramp-remote-path 'tramp-own-remote-path))
 
 ;; expand-region - the alternative to "inner" in vim
 (require 'expand-region)
