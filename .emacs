@@ -54,12 +54,19 @@
 (reformatter-define sillyfmt-format
   :program sillyfmt-command)
 (defun sf ()
-  "Call sillyfmt on buffer, disabling read-only buffer and resetting it after formatting is done"
+  "Call sillyfmt on buffer. Prompts for confirmation if the buffer is writable."
   (interactive)
-  ;; I don't love it, but disabling read-only is the only thing that will format the compilation output
-  (read-only-mode -1)
-  (sillyfmt-format-buffer)
-  (read-only-mode 1))
+  (if buffer-read-only
+      ;; progn groups multiple expressions into one body for the "then"
+      ;; branch of `if`, since `if` only takes a single form per branch.
+      ;; Without progn, only the first expression would be the "then" branch
+      ;; and the rest would be treated as the "else" branch.
+      (progn
+        (read-only-mode -1)
+        (sillyfmt-format-buffer)
+        (read-only-mode 1))
+    (when (y-or-n-p "Buffer is writable. Format anyway? ")
+      (sillyfmt-format-buffer))))
 
 ;; clang-format setup
 (setq clang-fmt-command "clang-format")
